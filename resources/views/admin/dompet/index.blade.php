@@ -30,10 +30,11 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="btn-group" role="group">
-                                <button class="btn btn-info dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Semua (4)</button>
+                            <button class="btn btn-info dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Semua ({{ $dompets->count() }})</button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
-                                    <a class="dropdown-item" href="#">Aktif (3)</a>
-                                    <a class="dropdown-item" href="#">Tidak Aktif (1)</a>
+                                    @foreach($status as $value)
+                                        <a class="dropdown-item" href="#">{{ $value->status_name }} ({{ $dompets->where('dompet_status_id', $value->status_id)->count() }})</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
