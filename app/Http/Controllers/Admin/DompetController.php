@@ -31,12 +31,11 @@ class DompetController extends Controller
         $validator = Validator::make($request->all(), 
         [
             'dompet_name' => 'required|min:5',
-            'dompet_deskripsi' => 'max:100',
-            'dompet_status' => 'required'
+            'dompet_deskripsi' => 'max:100'
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.dompet.index')->withErrors($validator)->withInput();
+            return redirect()->route('admin.dompet.create')->withErrors($validator)->withInput();
         }
 
         $dompet_name = $request->get('dompet_name');
