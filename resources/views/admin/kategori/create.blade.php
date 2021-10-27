@@ -35,6 +35,15 @@
 							<label class="form-label" for="kategori_name">{{ __('Nama') }} <a style="color:red;">*</a></label>
 							<input class="form-control" type="text" id="kategori_name" name="kategori_name" value="{{ old('kategori_name') }}" placeholder="Nama" />
                         </div>
+
+						<div class="col-md-12">
+							<label class="form-label" for="kategori_status">{{ __('Status') }}</label>
+							<select class="form-select" id="kategori_status" name="kategori_status">
+								@foreach($status as $value)
+									<option value="{{ $value->status_id }}">{{ $value->status_name }}</option>
+								@endforeach
+							</select>
+						</div>
                       </div>
 
 					  <div class="mt-4 mb-3" style="border-bottom: 1px solid #ecf3fa"></div>
