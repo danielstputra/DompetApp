@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Dompet;
 
 class DompetController extends Controller
 {
@@ -15,5 +16,10 @@ class DompetController extends Controller
     public function index()
     {
         return view('admin.dompet.index');
+    }
+
+    public function create(Dompet $dompets)
+    {
+        return view('admin.dompet.create', compact('dompets'));
     }
 }
