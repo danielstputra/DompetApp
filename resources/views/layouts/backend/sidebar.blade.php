@@ -17,7 +17,7 @@
                   <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="box"></i><span>Master</span></a>
                     <ul class="sidebar-submenu">
                       <li><a href="{{ route('admin.dompet.index') }}">Dompet</a></li>
-                      <li><a href="{{ route('admin.kategori') }}">Kategori</a></li>
+                      <li><a href="{{ route('admin.kategori.index') }}">Kategori</a></li>
                     </ul>
                   </li>
 
