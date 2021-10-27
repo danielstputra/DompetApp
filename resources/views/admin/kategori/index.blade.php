@@ -28,7 +28,7 @@
 			<div class="card">
 				<div class="card-body btn-showcase">
                     <div class="col text-end">
-                        <a class="btn btn-square btn-info mb-4" type="button" href="{{ route('admin.dompet.create') }}">{{ __('Buat Baru') }}</a>
+                        <a class="btn btn-square btn-info mb-4" type="button" href="{{ route('admin.kategori.create') }}">{{ __('Buat Baru') }}</a>
                         <div style="float:right;">
                             <select id="status_filter" class="form-select">
                                 <option value="0">Semua ({{ $kategori->count() }})</option>
@@ -41,7 +41,7 @@
                     
 					@include('flash-message')
 					<div class="table-responsive">
-                        <table class="display table-dompet">
+                        <table class="display table-kategori">
                             <thead>
                                 <tr>
                                     <th>{{ __('#') }}</th>
