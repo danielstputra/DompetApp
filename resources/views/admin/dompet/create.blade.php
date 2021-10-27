@@ -32,24 +32,23 @@
 					@csrf
                       <div class="row g-3 mb-3">
                         <div class="col-md-6">
-							<label class="form-label" for="dompet_name">{{ __('Nama : *') }}</label>
+							<label class="form-label" for="dompet_name">{{ __('Nama') }} <a style="color:red;">*</a></label>
 							<input class="form-control" type="text" id="dompet_name" name="dompet_name" value="{{ old('dompet_name') }}" placeholder="Nama" />
                         </div>
 
                         <div class="col-md-6">
-							<label class="form-label" for="dompet_referensi">{{ __('Referensi : *') }}</label>
+							<label class="form-label" for="dompet_referensi">{{ __('Referensi') }}</label>
 							<input class="form-control" type="text" id="dompet_referensi" name="dompet_referensi" value="{{ old('dompet_referensi') }}" placeholder="Referensi" />
                         </div>
 
 						<div class="col-md-12">
-							<label class="form-label" for="dompet_deskripsi">{{ __('Deskripsi : *') }}</label>
+							<label class="form-label" for="dompet_deskripsi">{{ __('Deskripsi') }}</label>
 							<textarea class="form-control" type="text" id="dompet_deskripsi" name="dompet_deskripsi" placeholder="Deskripsi">{{ old('dompet_deskripsi') }}</textarea>
                         </div>
 
 						<div class="col-md-12">
-							<label class="form-label" for="dompet_status">{{ __('Status : *') }}</label>
+							<label class="form-label" for="dompet_status">{{ __('Status') }}</label>
 							<select class="form-select" id="dompet_status" name="dompet_status">
-								<option selected="" disabled="" value="">Pilih Status...</option>
 								@foreach($status as $value)
 									<option value="{{ $value->id }}">{{ $value->name }}</option>
 								@endforeach
