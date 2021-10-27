@@ -76,20 +76,19 @@ $(function () {
         ajax: {
             url: "{{ route('admin.dompet.index') }}",
             data: function (d) {
-                d.status = $('#dompet_status_id').val(),
-                d.search = $('input[type="search"]').val()
+                d.status = $('#status').val()
             }
         },
         columns: [
-            {data: 'dompet_id ', name: 'dompet_id'},
-            {data: 'dompet_name', name: 'dompet_name'},
-            {data: 'dompet_reference', name: 'dompet_reference'},
-            {data: 'dompet_description', name: 'dompet_description'},
-            {data: 'dompet_status_id', name: 'dompet_status_id'},
+            {data: 'id ', name: 'id'},
+            {data: 'name', name: 'name'},
+            {data: 'reference', name: 'reference'},
+            {data: 'description', name: 'description'},
+            {data: 'status', name: 'status'},
         ]
     });
   
-    $('#dompet_status_id').change(function(){
+    $('#status').change(function(){
         table.draw();
     });
 });
