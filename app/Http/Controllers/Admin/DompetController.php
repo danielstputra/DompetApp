@@ -76,8 +76,7 @@ class DompetController extends Controller
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="'.route('admin.dompet.show', $row->dompet_id).'">Detail</a></li>
                         <li><a class="dropdown-item" href="'.route('admin.dompet.edit', $row->dompet_id).'">Ubah</a></li>
-                        
-                        <li><a class="dropdown-item" href="'.route('admin.dompet.edit', $row->dompet_id).'">'.$status.'</a></li>
+                        <li><a class="dropdown-item" href="#">'.$status.'</a></li>
                     </ul>
                 </div>';
             })
@@ -124,26 +123,6 @@ class DompetController extends Controller
             return redirect()->route('admin.dompet.index')->with('success','Dompet berhasil diubah!');
         } else {
             return redirect()->route('admin.dompet.index')->with('error', 'Terjadi kesalahan saat melakukan ubah data dompet!');
-        }
-    }
-
-    public function status(Dompet $dompet)
-    {
-        $status = '';
-        if ($dompet->dompet_status_id != 1) {
-            $status = 2;
-        } else {
-            $status = 1;
-        }
-
-        $execute = $dompet->update([
-            'dompet_status_id' => intval($status)
-        ]);
-
-        if ($execute) {
-            return redirect()->route('admin.dompet.index')->with('success','Ubah status dompet berhasil!');
-        } else {
-            return redirect()->route('admin.dompet.index')->with('error', 'Terjadi kesalahan saat melakukan ubah status dompet!');
         }
     }
 
