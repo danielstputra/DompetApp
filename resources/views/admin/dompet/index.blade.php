@@ -77,7 +77,7 @@ $(function () {
             }
         },
         columns: [
-            {data: 'id ', name: 'id'},
+            {data: 'DT_RowIndex ', name: 'DT_RowIndex'},
             {data: 'name', name: 'name'},
             {data: 'reference', name: 'reference'},
             {data: 'description', name: 'description'},
