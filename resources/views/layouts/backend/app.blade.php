@@ -37,6 +37,7 @@
     <!-- Plugins css start-->
     <link rel="stylesheet" type="text/css" href="{{ asset('templates/backend/CyberFrostModernTheme') }}/css/vendors/scrollbar.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('templates/backend/CyberFrostModernTheme') }}/css/vendors/select2.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('templates/backend/CyberFrostModernTheme') }}/css/vendors/datatables.css">
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('templates/backend/CyberFrostModernTheme') }}/css/vendors/bootstrap.css">
