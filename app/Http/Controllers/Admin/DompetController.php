@@ -22,7 +22,7 @@ class DompetController extends Controller
 
     public function create(Dompet $dompets)
     {
-        $status = DompetStatus::all();
+        $status = DompetStatus::orderBy('name')->get();
         return view('admin.dompet.create', compact('dompets', 'status'));
     }
 
