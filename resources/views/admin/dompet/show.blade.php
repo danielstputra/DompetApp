@@ -26,6 +26,10 @@
 		<div class="col-sm-12 col-xl-12">
 			<div class="card">
 				<div class="card-body btn-showcase">
+                    <div class="col text-end">
+                        <a class="btn btn-square btn-info mb-4" type="button" href="{{ route('admin.dompet.index') }}">{{ __('Kelola Dompet') }}</a>
+                    </div>
+
                     <div class="table-responsive" id="table">
                         <table class="table table-bordered table-striped">
                             <tbody>
