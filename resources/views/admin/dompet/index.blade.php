@@ -2,7 +2,10 @@
 	'title' => 'Dompet',
 	'contentTitle' => 'Management Dompet',
 ])
-
+@push('css')
+<!-- DataTables -->
+<link rel="stylesheet" type="text/css" href="{{ asset('templates/backend/CyberFrostModernTheme') }}/css/vendors/datatables.css">
+@endpush
 @section('content')
 <div class="container-fluid">        
 	<div class="page-title">
@@ -30,10 +33,10 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="btn-group" role="group">
-                            <button class="btn btn-info dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Semua ({{ $dompets->count() }})</button>
-                                <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
+                                <button class="btn btn-info dropdown-toggle" id="filters" name="filters" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Semua ({{ $dompets->count() }})</button>
+                                <div class="dropdown-menu" aria-labelledby="filters">
                                     @foreach($status as $value)
-                                        <a class="dropdown-item" href="#">{{ $value->status_name }} ({{ $dompets->where('dompet_status_id', $value->status_id)->count() }})</a>
+                                        <a class="dropdown-item" href="#" id="filters{{ $value->status_id }}" name="filters{{ $value->status_id }}">{{ $value->status_name }} ({{ $dompets->where('dompet_status_id', $value->status_id)->count() }})</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -81,4 +84,33 @@
 	<!-- /.row -->
 </div>
 <!-- Container-fluid Ends-->
+@push('js')
+<!-- DataTables -->
+<script src="{{ asset('templates/backend/CyberFrostModernTheme') }}/js/datatable/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('templates/backend/CyberFrostModernTheme') }}/js/datatable/datatables/datatable.custom.js"></script>
+<script>
+$(function () {
+    $('#table-dompet').DataTable({
+        'language' : {
+            'url' : '/templates/backend/CyberFrostModernTheme/js/datatable/datatables/indonesia.json',
+            'sEmptyTable' : 'Tidads'
+        }
+    });
+
+    $('#table-dompet-masuk').DataTable({
+        'language' : {
+            'url' : '/templates/backend/CyberFrostModernTheme/js/datatable/datatables/indonesia.json',
+            'sEmptyTable' : 'Tidads'
+        }
+    });
+
+    $('#table-dompet-keluar').DataTable({
+        'language' : {
+            'url' : '/templates/backend/CyberFrostModernTheme/js/datatable/datatables/indonesia.json',
+            'sEmptyTable' : 'Tidads'
+        }
+    });
+});
+</script>
+@endpush
 @stop
