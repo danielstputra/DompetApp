@@ -20,9 +20,10 @@ class DompetController extends Controller
         return view('admin.dompet.index');
     }
 
-    public function create(DompetStatus $dompet_status)
+    public function create(Dompet $dompets)
     {
-        return view('admin.dompet.create', compact('dompet_status'));
+        $status = DompetStatus::all();
+        return view('admin.dompet.create', compact('dompets', 'status'));
     }
 
     public function store(Request $request)
