@@ -31,10 +31,11 @@
                     
                     <div class="row">
                         <div class="col-md-2">
-                            <select id="status_filter" class="form-control" style="width: 200px">
-                                <option value="0">Semua</option>
-                                <option value="1">Aktif</option>
-                                <option value="2">Tidak Aktif</option>
+                            <select id="status_filter" class="form-select">
+                                <option value="0">Semua ({{ $dompets->count() }})</option>
+                                @foreach($status as $value)
+                                <option value="{{ $value->status_id }}">{{ $value->status_name }} ({{ $dompets->where('dompet_status_id', $value->status_id)->count() }})</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -47,7 +48,7 @@
                         <table class="display table-dompet">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>{{ __('#') }}</th>
                                     <th>{{ __('NAMA') }}</th>
                                     <th>{{ __('REFERENSI') }}</th>
                                     <th>{{ __('DESKRIPSI') }}</th>
@@ -77,11 +78,11 @@ $(function () {
             }
         },
         columns: [
-            {data: 'DT_RowIndex ', name: 'DT_RowIndex'},
-            {data: 'name', name: 'name'},
-            {data: 'reference', name: 'reference'},
-            {data: 'description', name: 'description'},
-            {data: 'status', name: 'status'},
+            {data: 'dompet_id', name: 'dompet_id'},
+            {data: 'dompet_name', name: 'dompet_name'},
+            {data: 'dompet_reference', name: 'dompet_reference'},
+            {data: 'dompet_description', name: 'dompet_description'},
+            {data: 'dompet_status_id', name: 'dompet_status_id'},
         ]
     });
   

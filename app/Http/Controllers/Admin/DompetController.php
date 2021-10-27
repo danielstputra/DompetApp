@@ -23,36 +23,30 @@ class DompetController extends Controller
      */
     public function index(Request $request)
     {
-        $dompets = Dompet::join('dompet_status', 'dompet.dompet_status_id', '=', 'dompet_status.status_id')
-        ->get(['dompet.dompet_id', 'dompet.dompet_name', 'dompet.dompet_reference', 'dompet.dompet_description', 'dompet.dompet_status_id', 'dompet_status.status_name']);
         $status = DompetStatus::all();
+        $dompets = Dompet::all();
+        $data = Dompet::select('*');
 
         if ($request->ajax()) {
-            return Datatables::of($dompets)
+            return Datatables::of($data)
             ->addIndexColumn()
-            ->addColumn('status', function($row){
-                if($row->status){
-                    return '<span class="badge badge-primary">Active</span>';
-                }else{
-                    return '<span class="badge badge-danger">Deactive</span>';
-                }
-            })
             ->filter(function ($instance) use ($request) {
-                if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
-                    $instance->where('status', $request->get('status'));
-                }
-
-                if (!empty($request->get('search'))) {
-                        $instance->where(function($w) use($request){
-                        $search = $request->get('search');
-
-                        $w->orWhere('name', 'LIKE', "%$search%")
-                        ->orWhere('reference', 'LIKE', "%$search%")
-                        ->orWhere('description', 'LIKE', "%$search%");
-                    });
+                if ($request->get('statusCode') == '1' || $request->get('statusCode') == '2') {
+                    $instance->where('dompet_status_id', $request->get('statusCode'));
+                } else {
+                    $instance->where('dompet_status_id', '!=', $request->get('statusCode'));
                 }
             })
-            ->rawColumns(['status'])
+            ->addColumn('dompet_status_id', function($row) {
+                if ($row->dompet_status_id == '1') {
+                    return 'Aktif';
+                } elseif($row->dompet_status_id == '2') {
+                    return 'Tidak Aktif';
+                } else {
+                    return '';
+                }
+            })
+            ->rawColumns(['dompet_status_id'])
             ->make(true);
         }
         
