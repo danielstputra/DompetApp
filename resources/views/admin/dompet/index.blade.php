@@ -31,7 +31,7 @@
                     
                     <div class="row">
                         <div class="col-md-2">
-                            <select id='status' class="form-control" style="width: 200px">
+                            <select id="status_filter" class="form-control" style="width: 200px">
                                 <option value="0">Semua</option>
                                 <option value="1">Aktif</option>
                                 <option value="2">Tidak Aktif</option>
@@ -73,7 +73,7 @@ $(function () {
         ajax: {
             url: "{{ route('admin.dompet.index') }}",
             data: function (d) {
-                d.status = $('#status').val()
+                d.statusCode = $('#status_filter').val()
             }
         },
         columns: [
@@ -85,7 +85,7 @@ $(function () {
         ]
     });
   
-    $('#status').change(function(){
+    $('#status_filter').change(function(){
         table.draw();
     });
 });
