@@ -27,10 +27,9 @@
 		<div class="col-sm-12 col-xl-12">
 			<div class="card">
 				<div class="card-body btn-showcase">
-					@include('flash-message')
-                    
-                    <div class="row">
-                        <div class="col-md-2">
+                    <div class="col text-end">
+                        <a class="btn btn-square btn-info mb-4" type="button" href="{{ route('admin.dompet.create') }}">{{ __('Buat Baru') }}</a>
+                        <div style="float:right;">
                             <select id="status_filter" class="form-select">
                                 <option value="0">Semua ({{ $dompets->count() }})</option>
                                 @foreach($status as $value)
@@ -38,12 +37,9 @@
                                 @endforeach
                             </select>
                         </div>
-
-                        <div class="col-md-10">
-                            <a class="btn btn-square btn-info mb-4" type="button" href="{{ route('admin.dompet.create') }}">{{ __('Buat Baru') }}</a>
-                        </div>
                     </div>
                     
+					@include('flash-message')
 					<div class="table-responsive">
                         <table class="display table-dompet">
                             <thead>
