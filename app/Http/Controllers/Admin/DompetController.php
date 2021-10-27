@@ -17,7 +17,9 @@ class DompetController extends Controller
 
     public function index()
     {
-        return view('admin.dompet.index');
+        $dompets = Dompet::join('dompet_status', 'dompet.dompet_status_id', '=', 'dompet_status.id')
+        ->get(['dompet.*', 'dompet_status.name']);
+        return view('admin.dompet.index', compact('dompets'));
     }
 
     public function create(Dompet $dompets)
