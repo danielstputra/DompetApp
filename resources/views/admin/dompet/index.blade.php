@@ -63,9 +63,9 @@
                                 @foreach($dompets as $value)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td style="font-weight: 600;">{{ $value->name }}</td>
-                                    <td>{{ $value->reference }}</td>
-                                    <td>{{ $value->description }}</td>
+                                    <td style="font-weight: 600;">{{ $value->dompet_name }}</td>
+                                    <td>{{ $value->dompet_reference }}</td>
+                                    <td>{{ $value->dompet_description }}</td>
                                     <td>{{ $value->status_name }}</td>
                                     <td>Dompet Utama</td>
                                 </tr>
