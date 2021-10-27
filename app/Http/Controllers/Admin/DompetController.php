@@ -127,6 +127,26 @@ class DompetController extends Controller
         }
     }
 
+    public function status(Dompet $dompet)
+    {
+        $status = '';
+        if ($dompet->dompet_status_id != 1) {
+            $status = 2;
+        } else {
+            $status = 1;
+        }
+
+        $execute = $dompet->update([
+            'dompet_status_id' => intval($status)
+        ]);
+
+        if ($execute) {
+            return redirect()->route('admin.dompet.index')->with('success','Ubah status dompet berhasil!');
+        } else {
+            return redirect()->route('admin.dompet.index')->with('error', 'Terjadi kesalahan saat melakukan ubah status dompet!');
+        }
+    }
+
     public function show(Dompet $dompet)
     {
         return view('admin.dompet.show', compact('dompet'));
