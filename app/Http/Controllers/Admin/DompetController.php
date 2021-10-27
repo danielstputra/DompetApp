@@ -78,4 +78,14 @@ class DompetController extends Controller
         
         return view('admin.dompet.index', compact('dompets', 'status'));
     }
+
+    public function edit(Dompet $dompet)
+    {
+        return view('admin.dompet.edit', compact('dompet'));
+    }
+
+    public function show(Dompet $dompet)
+    {
+        return view('admin.dompet.show', compact('dompet'));
+    }
 }
