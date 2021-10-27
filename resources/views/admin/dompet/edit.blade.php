@@ -30,6 +30,7 @@
                     
                     <form class="needs-validation" novalidate="" action="{{ route('admin.dompet.update', $dompet->dompet_id) }}" method="POST" enctype="multipart/form-data">
 					@csrf
+                    @method('PUT')
                       <div class="row g-3 mb-3">
                         <div class="col-md-6">
 							<label class="form-label" for="dompet_name">{{ __('Nama') }} <a style="color:red;">*</a></label>

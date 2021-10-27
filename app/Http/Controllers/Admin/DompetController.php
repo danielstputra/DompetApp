@@ -85,6 +85,39 @@ class DompetController extends Controller
         return view('admin.dompet.edit', compact('dompet', 'status'));
     }
 
+    public function update(Request $request, Dompet $dompet)
+    {
+        $validator = Validator::make($request->all(), [
+            'dompet_name' => 'min:5',
+            'dompet_deskripsi' => 'max:100',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+            ->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $dompet_name = $request->get('dompet_name');
+        $dompet_referensi = $request->get('dompet_referensi');
+        $dompet_deskripsi = $request->get('dompet_deskripsi');
+        $dompet_status = $request->get('dompet_status');
+
+        $execute = $dompet->update([
+            'dompet_name' => trim($dompet_name),
+            'dompet_referensi' => intval($dompet_referensi),
+            'dompet_deskripsi' => trim($dompet_deskripsi),
+            'dompet_status_id' => trim($dompet_status),
+        ]);
+
+        if ($execute) {
+            return redirect()->route('admin.dompet.index')->with('success','Dompet berhasil diubah!');
+        } else {
+            return redirect()->route('admin.dompet.index')->with('error', 'Terjadi kesalahan saat melakukan ubah data dompet!');
+        }
+    }
+
     public function show(Dompet $dompet)
     {
         return view('admin.dompet.show', compact('dompet'));
