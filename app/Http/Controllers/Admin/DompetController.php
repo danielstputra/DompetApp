@@ -36,6 +36,15 @@ class DompetController extends Controller
                 } else {
                     $instance->where('dompet_status_id', '!=', $request->get('statusCode'));
                 }
+
+                if (!empty($request->get('search'))) {
+                    $instance->where(function($w) use($request){
+                       $search = $request->get('search');
+                       $w->orWhere('dompet_name', 'LIKE', "%$search%")
+                       ->orWhere('dompet_reference', 'LIKE', "%$search%")
+                       ->orWhere('dompet_description', 'LIKE', "%$search%");
+                   });
+               }
             })
             ->addColumn('dompet_status_id', function($row) {
                 if ($row->dompet_status_id == '1') {
