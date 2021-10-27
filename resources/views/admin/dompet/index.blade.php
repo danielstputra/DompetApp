@@ -47,7 +47,7 @@
                     </div>
                     
 					<div class="table-responsive">
-                        <table class="display" id="table-dompet">
+                        <table class="display table-dompet">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -87,25 +87,27 @@
 <!-- DataTables -->
 <script>
 $(function () {
-    $('#table-dompet').DataTable({
-        'language' : {
-            'url' : '/templates/backend/CyberFrostModernTheme/js/datatable/datatables/indonesia.json',
-            'sEmptyTable' : 'Tidads'
-        }
+    var table = $('.table-dompet').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: "{{ route('admin.dompet.index') }}",
+            data: function (d) {
+                d.status = $('#dompet_status_id').val(),
+                d.search = $('input[type="search"]').val()
+            }
+        },
+        columns: [
+            {data: 'dompet_id ', name: 'dompet_id'},
+            {data: 'dompet_name', name: 'dompet_name'},
+            {data: 'dompet_reference', name: 'dompet_reference'},
+            {data: 'dompet_description', name: 'dompet_description'},
+            {data: 'dompet_status_id', name: 'dompet_status_id'},
+        ]
     });
-
-    $('#table-dompet-masuk').DataTable({
-        'language' : {
-            'url' : '/templates/backend/CyberFrostModernTheme/js/datatable/datatables/indonesia.json',
-            'sEmptyTable' : 'Tidads'
-        }
-    });
-
-    $('#table-dompet-keluar').DataTable({
-        'language' : {
-            'url' : '/templates/backend/CyberFrostModernTheme/js/datatable/datatables/indonesia.json',
-            'sEmptyTable' : 'Tidads'
-        }
+  
+    $('#dompet_status_id').change(function(){
+        table.draw();
     });
 });
 </script>
