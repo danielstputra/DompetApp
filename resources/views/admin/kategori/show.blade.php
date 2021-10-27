@@ -35,11 +35,11 @@
                             <tbody>
                                 <tr>
                                     <td><h6 class="p-2 mb-0">NAMA</h6></td>
-                                    <td><p class="m-0">{{ $kategori->dompet_name }}</p></td>
+                                    <td><p class="m-0">{{ $kategori->cat_name }}</p></td>
                                 </tr>
                                 <tr>
                                     <td><h6 class="p-2 mb-0">DESKRIPSI</h6></td>
-                                    <td><p class="m-0">{{ $kategori->dompet_description }}</p></td>
+                                    <td><p class="m-0">{{ $kategori->cat_description }}</p></td>
                                 </tr>
                                 <tr>
                                     <td><h6 class="p-2 mb-0">STATUS</h6></td>
