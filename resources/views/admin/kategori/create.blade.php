@@ -37,6 +37,11 @@
                         </div>
 
 						<div class="col-md-12">
+							<label class="form-label" for="kategori_deskripsi">{{ __('Deskripsi') }}</label>
+							<textarea class="form-control" type="text" id="kategori_deskripsi" name="kategori_deskripsi" placeholder="Deskripsi">{{ old('kategori_deskripsi') }}</textarea>
+						</div>
+
+						<div class="col-md-12">
 							<label class="form-label" for="kategori_status">{{ __('Status') }}</label>
 							<select class="form-select" id="kategori_status" name="kategori_status">
 								@foreach($status as $value)

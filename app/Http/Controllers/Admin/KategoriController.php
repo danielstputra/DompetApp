@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use DataTables;
 use App\Models\Kategori;
@@ -89,9 +90,9 @@ class KategoriController extends Controller
     public function store(Request $request, Kategori $kategori)
     {
         $validator = Validator::make($request->all(), [
-            'cat_name' => 'required|min:5',
-            'cat_description' => 'max:100',
-            'cat_status_id' => 'required'
+            'kategori_name' => 'required|min:5',
+            'kategori_description' => 'max:100',
+            'kategori_status' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -101,14 +102,14 @@ class KategoriController extends Controller
             ->withInput();
         }
 
-        $cat_name = $request->get('cat_name');
-        $cat_description = $request->get('cat_description');
-        $cat_status_id = $request->get('cat_status_id');
+        $kategori_name = $request->get('kategori_name');
+        $kategori_description = $request->get('kategori_description');
+        $kategori_status_id = $request->get('kategori_status_id');
 
         $execute = $kategori->create([
-            'cat_name' => trim($cat_name),
-            'cat_description' => trim($cat_description),
-            'cat_status_id' => intval($cat_status_id),
+            'cat_name' => trim($kategori_name),
+            'cat_description' => trim($kategori_description),
+            'cat_status_id' => intval($kategori_status_id),
         ]);
 
         if ($execute) {
