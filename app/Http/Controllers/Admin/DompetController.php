@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Dompet;
+use App\Models\DompetStatus;
 
 class DompetController extends Controller
 {
@@ -19,9 +20,9 @@ class DompetController extends Controller
         return view('admin.dompet.index');
     }
 
-    public function create(Dompet $dompets)
+    public function create(DompetStatus $dompet_status)
     {
-        return view('admin.dompet.create', compact('dompets'));
+        return view('admin.dompet.create', compact('dompet_status'));
     }
 
     public function store(Request $request)
