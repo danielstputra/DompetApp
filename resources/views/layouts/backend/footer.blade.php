@@ -26,8 +26,6 @@
     <script src="{{ asset('templates/backend/CyberFrostModernTheme') }}/js/select2/select2.full.min.js"></script>
     <script src="{{ asset('templates/backend/CyberFrostModernTheme') }}/js/select2/select2-custom.js"></script>
     <script src="{{ asset('templates/backend/CyberFrostModernTheme') }}/js/height-equal.js"></script>
-    <script src="{{ asset('templates/backend/CyberFrostModernTheme') }}/js/datatable/datatables/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('templates/backend/CyberFrostModernTheme') }}/js/datatable/datatables/datatable.custom.js"></script>
     <script src="{{ asset('templates/backend/CyberFrostModernTheme') }}/js/tooltip-init.js"></script>
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
@@ -37,24 +35,6 @@
 
     <script>
     $(function () {
-      $('#table-dompet').DataTable({
-        'language' : {
-          'url' : '/templates/backend/CyberFrostModernTheme/js/datatable/datatables/indonesia.json',
-          'sEmptyTable' : 'Tidads'
-        }
-      });
-      $('#table-dompet-masuk').DataTable({
-        'language' : {
-          'url' : '/templates/backend/CyberFrostModernTheme/js/datatable/datatables/indonesia.json',
-          'sEmptyTable' : 'Tidads'
-        }
-      });
-      $('#table-dompet-keluar').DataTable({
-        'language' : {
-          'url' : '/templates/backend/CyberFrostModernTheme/js/datatable/datatables/indonesia.json',
-          'sEmptyTable' : 'Tidads'
-        }
-      });
       $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
