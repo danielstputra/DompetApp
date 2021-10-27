@@ -118,4 +118,46 @@ class KategoriController extends Controller
             return redirect()->route('admin.kategori.index')->with('error', 'Terjadi kesalahan saat melakukan tambah data kategori!');
         }
     }
+
+    public function edit(Kategori $kategori)
+    {
+        $status = KategoriStatus::all();
+        return view('admin.kategori.edit', compact('kategori', 'status'));
+    }
+
+    public function update(Request $request, Kategori $kategori)
+    {
+        $validator = Validator::make($request->all(), [
+            'kategori_name' => 'min:5',
+            'kategori_deskripsi' => 'max:100',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+            ->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $kategori_name = $request->get('kategori_name');
+        $kategori_deskripsi = $request->get('kategori_deskripsi');
+        $kategori_status = $request->get('kategori_status');
+
+        $execute = $dompet->update([
+            'cat_name' => trim($kategori_name),
+            'cat_description' => trim($kategori_deskripsi),
+            'cat_status_id' => intval($kategori_status),
+        ]);
+
+        if ($execute) {
+            return redirect()->route('admin.kategori.index')->with('success','Kategori berhasil diubah!');
+        } else {
+            return redirect()->route('admin.kategori.index')->with('error', 'Terjadi kesalahan saat melakukan ubah data kategori!');
+        }
+    }
+
+    public function show(Kategori $kategori)
+    {
+        return view('admin.kategori.show', compact('kategori'));
+    }
 }
