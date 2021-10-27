@@ -93,6 +93,40 @@ class DompetController extends Controller
         return view('admin.dompet.create', compact('dompet', 'status'));
     }
 
+    public function store(Request $request, Dompet $dompet)
+    {
+        $validator = Validator::make($request->all(), [
+            'dompet_name' => 'required|min:5',
+            'dompet_deskripsi' => 'max:100',
+            'dompet_status' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+            ->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $dompet_name = $request->get('dompet_name');
+        $dompet_referensi = $request->get('dompet_referensi');
+        $dompet_deskripsi = $request->get('dompet_deskripsi');
+        $dompet_status = $request->get('dompet_status');
+
+        $execute = $dompet->create([
+            'dompet_name' => trim($dompet_name),
+            'dompet_referensi' => intval($dompet_referensi),
+            'dompet_deskripsi' => trim($dompet_deskripsi),
+            'dompet_status_id' => intval($dompet_status),
+        ]);
+
+        if ($execute) {
+            return redirect()->route('admin.dompet.index')->with('success','Dompet berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.dompet.index')->with('error', 'Terjadi kesalahan saat melakukan tambah data dompet!');
+        }
+    }
+
     public function edit(Dompet $dompet)
     {
         $status = DompetStatus::all();
@@ -122,7 +156,7 @@ class DompetController extends Controller
             'dompet_name' => trim($dompet_name),
             'dompet_referensi' => intval($dompet_referensi),
             'dompet_deskripsi' => trim($dompet_deskripsi),
-            'dompet_status_id' => trim($dompet_status),
+            'dompet_status_id' => intval($dompet_status),
         ]);
 
         if ($execute) {
