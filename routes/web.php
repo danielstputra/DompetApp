@@ -35,11 +35,10 @@ Route::group(['namespace' => 'Admin','prefix' => 'admin','middleware' => ['auth'
 	Route::name('admin.')->group(function(){
 		Route::get('/', [AdminController::class,'index'])->name('index');
 		Route::get('/dashboard', [AdminController::class,'index'])->name('dashboard');
-		Route::get('/kategori', [KategoriController::class,'index'])->name('kategori');
 		
-		Route::resource('dompet', 'DompetController');
-		Route::resource('kategori', 'KategoriController');
-		Route::resource('dompet-masuk', 'DompetMasukController');
-		Route::resource('dompet-keluar', 'DompetKeluarController');
+		Route::resource('dompet', 'DompetController', ['names' => 'dompet']);
+		Route::resource('kategori', 'KategoriController', ['names' => 'kategori']);
+		Route::resource('dompet-masuk', 'DompetMasukController', ['names' => 'dompet.masuk']);
+		Route::resource('dompet-keluar', 'DompetKeluarController', ['names' => 'dompet.keluar']);
 	});
 });
