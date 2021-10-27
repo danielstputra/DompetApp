@@ -3,8 +3,7 @@
 	'contentTitle' => 'Management Dompet',
 ])
 @push('css')
-<!-- DataTables -->
-<link rel="stylesheet" type="text/css" href="{{ asset('templates/backend/CyberFrostModernTheme') }}/css/vendors/datatables.css">
+
 @endpush
 @section('content')
 <div class="container-fluid">        
@@ -86,8 +85,6 @@
 <!-- Container-fluid Ends-->
 @push('js')
 <!-- DataTables -->
-<script src="{{ asset('templates/backend/CyberFrostModernTheme') }}/js/datatable/datatables/jquery.dataTables.min.js"></script>
-<script src="{{ asset('templates/backend/CyberFrostModernTheme') }}/js/datatable/datatables/datatable.custom.js"></script>
 <script>
 $(function () {
     $('#table-dompet').DataTable({
