@@ -13,7 +13,7 @@ class User extends Authenticatable
 
     public $table = "users";
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'user_id';
     
     public $timestamps = true;
     
