@@ -11,7 +11,7 @@ class DompetStatus extends Model
 
     public $table = "dompet_status";
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'status_id';
     
     public $timestamps = true;
     
@@ -21,6 +21,6 @@ class DompetStatus extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'status_name'
     ];
 }
