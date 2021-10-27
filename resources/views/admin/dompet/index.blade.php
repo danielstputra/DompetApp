@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="col-md-10">
-                            <a class="btn btn-square btn-info mb-4" type="button" href="#">{{ __('Buat Baru') }}</a>
+                            <a class="btn btn-square btn-info mb-4" type="button" href="{{ route('admin.dompet.create') }}">{{ __('Buat Baru') }}</a>
                         </div>
                     </div>
                     
