@@ -75,7 +75,8 @@ $(function () {
         ajax: {
             url: "{{ route('admin.dompet.index') }}",
             data: function (d) {
-                d.statusCode = $('#status_filter').val()
+                d.statusCode = $('#status_filter').val(),
+                d.search = $('input[type="search"]').val()
             }
         },
         columns: [
