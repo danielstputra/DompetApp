@@ -53,6 +53,7 @@
                                     <th>{{ __('REFERENSI') }}</th>
                                     <th>{{ __('DESKRIPSI') }}</th>
                                     <th>{{ __('STATUS') }}</th>
+                                    <th>{{ __('AKSI') }}</th>
                                 </tr>
                             </thead>
                         </table>
@@ -83,6 +84,7 @@ $(function () {
             {data: 'dompet_reference', name: 'dompet_reference'},
             {data: 'dompet_description', name: 'dompet_description'},
             {data: 'dompet_status_id', name: 'dompet_status_id'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });
   

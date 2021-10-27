@@ -46,7 +46,33 @@ class DompetController extends Controller
                     return '';
                 }
             })
-            ->rawColumns(['dompet_status_id'])
+            ->addColumn('action', function($row){
+                $status = '';
+                if ($row->dompet_status_id != '1') {
+                    $status = 'Aktif';
+                } elseif($row->dompet_status_id != '2') {
+                    $status = 'Tidak Aktif';
+                } else {
+                    $status = '';
+                }
+
+                return '
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Action
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">'.$row->dompet_name.'</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="'.route('admin.dompet.show', $row->dompet_id).'">Detail</a></li>
+                        <li><a class="dropdown-item" href="'.route('admin.dompet.edit', $row->dompet_id).'">Ubah</a></li>
+                        
+                        <li><a class="dropdown-item" href="'.route('admin.dompet.status', $row->dompet_id).'">'.$status.'</a></li>
+                    </ul>
+                </div>';
+            })
+            ->rawColumns(['dompet_status_id', 'action'])
             ->make(true);
         }
         
