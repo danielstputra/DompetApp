@@ -15,11 +15,36 @@ class DompetController extends Controller
         $this->middleware(['auth','is_verified']);
     }
 
-    public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
-        $dompets = Dompet::join('dompet_status', 'dompet.dompet_status_id', '=', 'dompet_status.status_id')
-        ->get(['dompet.*', 'dompet_status.status_name']);
-        $status = DompetStatus::all();
+        if ($request->ajax()) {
+            $dompets = Dompet::join('dompet_status', 'dompet.dompet_status_id', '=', 'dompet_status.status_id')
+            ->get(['dompet.*', 'dompet_status.status_name']);
+            $status = DompetStatus::all();
+
+            return Datatables::of($dompets)
+                    ->addIndexColumn()
+                    ->addColumn('status', function($row){
+                         if($row->dompet_status_id){
+                            return '<span class="badge badge-primary">Aktif</span>';
+                         }else{
+                            return '<span class="badge badge-danger">Tidak Aktif</span>';
+                         }
+                    })
+                    ->filter(function ($instance) use ($request) {
+                        if ($request->get('status') == '0' || $request->get('status') == '1') {
+                            $instance->where('status_name', $request->get('status'));
+                        }
+                    })
+                    ->rawColumns(['status'])
+                    ->make(true);
+        }
+        
         return view('admin.dompet.index', compact('dompets', 'status'));
     }
 
