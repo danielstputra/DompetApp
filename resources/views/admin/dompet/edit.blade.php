@@ -28,29 +28,29 @@
 				<div class="card-body btn-showcase">
 					@include('flash-message')
                     
-                    <form class="needs-validation" novalidate="" action="{{ route('admin.dompet.store') }}" method="POST" enctype="multipart/form-data">
+                    <form class="needs-validation" novalidate="" action="{{ route('admin.dompet.update', $dompet->dompet_id) }}" method="POST" enctype="multipart/form-data">
 					@csrf
                       <div class="row g-3 mb-3">
                         <div class="col-md-6">
 							<label class="form-label" for="dompet_name">{{ __('Nama') }} <a style="color:red;">*</a></label>
-							<input class="form-control" type="text" id="dompet_name" name="dompet_name" value="{{ old('dompet_name') }}" placeholder="Nama" />
+							<input class="form-control" type="text" id="dompet_name" name="dompet_name" value="{{ $dompet->dompet_name }}" placeholder="Nama" />
                         </div>
 
                         <div class="col-md-6">
-							<label class="form-label" for="dompet_referensi">{{ __('Referensi') }}</label>
-							<input class="form-control" type="text" id="dompet_referensi" name="dompet_referensi" value="{{ old('dompet_referensi') }}" placeholder="Referensi" />
+							<label class="form-label" for="dompet_referensi">{{ __('Referensi') }} <a style="color:red;">*</a></label>
+							<input class="form-control" type="text" id="dompet_referensi" name="dompet_referensi" value="{{ $dompet->dompet_reference }}" placeholder="Referensi" />
                         </div>
 
 						<div class="col-md-12">
-							<label class="form-label" for="dompet_deskripsi">{{ __('Deskripsi') }}</label>
-							<textarea class="form-control" type="text" id="dompet_deskripsi" name="dompet_deskripsi" placeholder="Deskripsi">{{ old('dompet_deskripsi') }}</textarea>
+							<label class="form-label" for="dompet_deskripsi">{{ __('Deskripsi') }} <a style="color:red;">*</a></label>
+							<textarea class="form-control" type="text" id="dompet_deskripsi" name="dompet_deskripsi" placeholder="Deskripsi">{{ $dompet->dompet_description }}</textarea>
                         </div>
 
 						<div class="col-md-12">
-							<label class="form-label" for="dompet_status">{{ __('Status') }}</label>
+							<label class="form-label" for="dompet_status">{{ __('Status') }} <a style="color:red;">*</a></label>
 							<select class="form-select" id="dompet_status" name="dompet_status">
 								@foreach($status as $value)
-									<option value="{{ $value->id }}">{{ $value->name }}</option>
+                                    <option value="{{ $value->status_id }}" {{ ($value->status_id == $dompet->dompet_status_id) ? 'Selected' : ''}}>{{ $value->status_name }}</option>
 								@endforeach
 							</select>
 						</div>

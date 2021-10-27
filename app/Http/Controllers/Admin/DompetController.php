@@ -68,7 +68,7 @@ class DompetController extends Controller
                         <li><a class="dropdown-item" href="'.route('admin.dompet.show', $row->dompet_id).'">Detail</a></li>
                         <li><a class="dropdown-item" href="'.route('admin.dompet.edit', $row->dompet_id).'">Ubah</a></li>
                         
-                        <li><a class="dropdown-item" href="'.route('admin.dompet.status', $row->dompet_id).'">'.$status.'</a></li>
+                        <li><a class="dropdown-item" href="'.route('admin.dompet.edit', $row->dompet_id).'">'.$status.'</a></li>
                     </ul>
                 </div>';
             })
@@ -81,7 +81,8 @@ class DompetController extends Controller
 
     public function edit(Dompet $dompet)
     {
-        return view('admin.dompet.edit', compact('dompet'));
+        $status = DompetStatus::all();
+        return view('admin.dompet.edit', compact('dompet', 'status'));
     }
 
     public function show(Dompet $dompet)
