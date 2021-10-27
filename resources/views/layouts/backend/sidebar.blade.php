@@ -23,8 +23,8 @@
 
                   <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="credit-card"></i><span>Transaksi</span></a>
                     <ul class="sidebar-submenu">
-                      <li><a href="{{ route('admin.dompet.masuk') }}">Dompet Masuk</a></li>
-                      <li><a href="{{ route('admin.dompet.keluar') }}">Dompet Keluar</a></li>
+                      <li><a href="#">Dompet Masuk</a></li>
+                      <li><a href="#">Dompet Keluar</a></li>
                     </ul>
                   </li>
 
