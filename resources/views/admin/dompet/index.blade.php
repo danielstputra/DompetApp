@@ -55,25 +55,8 @@
                                     <th>{{ __('REFERENSI') }}</th>
                                     <th>{{ __('DESKRIPSI') }}</th>
                                     <th>{{ __('STATUS') }}</th>
-                                    <th>{{ __('AKSI') }}</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @php 
-                                    $no=1;
-                                @endphp
-
-                                @foreach($dompets as $value)
-                                <tr>
-                                    <td>{{ $no++ }}</td>
-                                    <td style="font-weight: 600;">{{ $value->dompet_name }}</td>
-                                    <td>{{ $value->dompet_reference }}</td>
-                                    <td>{{ $value->dompet_description }}</td>
-                                    <td>{{ $value->status_name }}</td>
-                                    <td>Dompet Utama</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
 				</div>
