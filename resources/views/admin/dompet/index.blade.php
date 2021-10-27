@@ -66,8 +66,7 @@
                                     <td style="font-weight: 600;">{{ $value->name }}</td>
                                     <td>{{ $value->reference }}</td>
                                     <td>{{ $value->description }}</td>
-                                    <td>{{ $value->dompet_status_id }}</td>
-                                    <td>(-) 500.000</td>
+                                    <td>{{ $value->status_name }}</td>
                                     <td>Dompet Utama</td>
                                 </tr>
                                 @endforeach
