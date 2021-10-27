@@ -31,14 +31,11 @@
                     
                     <div class="row">
                         <div class="col-md-2">
-                            <div class="btn-group" role="group">
-                                <button class="btn btn-info dropdown-toggle" id="filters" name="filters" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Semua ({{ $dompets->count() }})</button>
-                                <div class="dropdown-menu" aria-labelledby="filters">
-                                    @foreach($status as $value)
-                                        <a class="dropdown-item" href="#" id="filters{{ $value->status_id }}" name="filters{{ $value->status_id }}">{{ $value->status_name }} ({{ $dompets->where('dompet_status_id', $value->status_id)->count() }})</a>
-                                    @endforeach
-                                </div>
-                            </div>
+                            <select id='status' class="form-control" style="width: 200px">
+                                <option value="0">Semua</option>
+                                <option value="1">Aktif</option>
+                                <option value="2">Tidak Aktif</option>
+                            </select>
                         </div>
 
                         <div class="col-md-10">
