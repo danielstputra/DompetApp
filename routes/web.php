@@ -36,7 +36,8 @@ Route::group(['namespace' => 'Admin','prefix' => 'admin','middleware' => ['auth'
 		Route::get('/', [AdminController::class,'index'])->name('index');
 		Route::get('/dashboard', [AdminController::class,'index'])->name('dashboard');
 		Route::get('/kategori', [KategoriController::class,'index'])->name('kategori');
-		Route::get('/dompet', [DompetController::class,'index'])->name('dompet');
+		
+		Route::resource('dompet', 'DompetController');
 		Route::get('/dompet-masuk', [DompetMasukController::class,'index'])->name('dompet.masuk');
 		Route::get('/dompet-keluar', [DompetKeluarController::class,'index'])->name('dompet.keluar');
 	});
