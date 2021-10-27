@@ -143,7 +143,7 @@ class KategoriController extends Controller
         $kategori_deskripsi = $request->get('kategori_deskripsi');
         $kategori_status = $request->get('kategori_status');
 
-        $execute = $dompet->update([
+        $execute = $kategori->update([
             'cat_name' => trim($kategori_name),
             'cat_description' => trim($kategori_deskripsi),
             'cat_status_id' => intval($kategori_status),
