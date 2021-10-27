@@ -48,24 +48,29 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>{{ __('TANGGAL') }}</th>
-                                    <th>{{ __('KODE') }}</th>
+                                    <th>{{ __('NAMA') }}</th>
+                                    <th>{{ __('REFERENSI') }}</th>
                                     <th>{{ __('DESKRIPSI') }}</th>
-                                    <th>{{ __('KATEGORI') }}</th>
-                                    <th>{{ __('NILAI') }}</th>
-                                    <th>{{ __('DOMPET') }}</th>
+                                    <th>{{ __('STATUS') }}</th>
+                                    <th>{{ __('AKSI') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @php 
+                                    $no=1;
+                                @endphp
+
+                                @foreach($dompets as $value)
                                 <tr>
-                                    <td>1</td>
-                                    <td>2021-10-27</td>
-                                    <td>WOUT00000001</td>
-                                    <td>Bayar Kos</td>
-                                    <td>Pengeluaran</td>
+                                    <td>{{ $no++ }}</td>
+                                    <td style="font-weight: 600;">{{ $value->name }}</td>
+                                    <td>{{ $value->reference }}</td>
+                                    <td>{{ $value->description }}</td>
+                                    <td>{{ $value->dompet_status_id }}</td>
                                     <td>(-) 500.000</td>
                                     <td>Dompet Utama</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
