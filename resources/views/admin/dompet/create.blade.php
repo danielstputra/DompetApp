@@ -13,7 +13,7 @@
 			<div class="col-6">
 				<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="{{ route('admin.index') }}">{{ __('Halaman Utama') }}</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.dompet') }}">{{ __('Dompet') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.dompet.index') }}">{{ __('Dompet') }}</a></li>
 				<li class="breadcrumb-item active">{{ __('Tambah') }}</li>
 				</ol>
 			</div>
@@ -28,7 +28,7 @@
 				<div class="card-body btn-showcase">
 					@include('flash-message')
                     
-                    <form class="needs-validation" novalidate="" action="{{ route('admin.users.store') }}" method="POST" enctype="multipart/form-data">
+                    <form class="needs-validation" novalidate="" action="{{ route('admin.dompet.store') }}" method="POST" enctype="multipart/form-data">
 					@csrf
                       <div class="row g-3 mb-3">
                         <div class="col-md-6">
