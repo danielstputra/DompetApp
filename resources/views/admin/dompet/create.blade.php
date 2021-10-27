@@ -50,7 +50,7 @@
 							<label class="form-label" for="dompet_status">{{ __('Status') }}</label>
 							<select class="form-select" id="dompet_status" name="dompet_status">
 								@foreach($status as $value)
-									<option value="{{ $value->id }}">{{ $value->name }}</option>
+									<option value="{{ $value->status_id }}">{{ $value->status_name }}</option>
 								@endforeach
 							</select>
 						</div>
