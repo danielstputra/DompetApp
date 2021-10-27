@@ -91,7 +91,7 @@ class KategoriController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'kategori_name' => 'required|min:5',
-            'kategori_description' => 'max:100',
+            'kategori_deskripsi' => 'max:100',
             'kategori_status' => 'required'
         ]);
 
@@ -103,13 +103,13 @@ class KategoriController extends Controller
         }
 
         $kategori_name = $request->get('kategori_name');
-        $kategori_description = $request->get('kategori_description');
-        $kategori_status_id = $request->get('kategori_status_id');
+        $kategori_deskripsi = $request->get('kategori_deskripsi');
+        $kategori_status = $request->get('kategori_status');
 
         $execute = $kategori->create([
             'cat_name' => trim($kategori_name),
-            'cat_description' => trim($kategori_description),
-            'cat_status_id' => intval($kategori_status_id),
+            'cat_description' => trim($kategori_deskripsi),
+            'cat_status_id' => intval($kategori_status),
         ]);
 
         if ($execute) {
