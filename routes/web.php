@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DompetController;
 use App\Http\Controllers\Admin\DompetMasukController;
 use App\Http\Controllers\Admin\DompetKeluarController;
 use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Admin\LaporanTransaksiController;
 
 //Auth Namespace
 use App\Http\Controllers\Auth\AuthController;
