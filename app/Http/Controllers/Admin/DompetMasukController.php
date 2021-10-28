@@ -32,7 +32,8 @@ class DompetMasukController extends Controller
     public function create(Transaksi $transaksi)
     {
         $status = TransaksiStatus::all();
-        return view('admin.dompet.masuk.create', compact('transaksi', 'status'));
+        $data['new_id'] = $this->get_kode();  
+        return view('admin.dompet.masuk.create', compact('transaksi', 'status', 'data'));
     }
 
     public function store(Request $request, Transaksi $transaksi)
