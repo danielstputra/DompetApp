@@ -152,7 +152,7 @@ class DompetKeluarController extends Controller
     		$addNol = "0";
     	}
 
-    	$kodeBaru = "WIN".$addNol.$incrementKode;
+    	$kodeBaru = "WOUT".$addNol.$incrementKode;
     	return $kodeBaru;
     }
 }
