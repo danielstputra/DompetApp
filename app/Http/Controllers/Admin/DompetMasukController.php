@@ -28,6 +28,7 @@ class DompetMasukController extends Controller
         ->join('kategori', 'kategori.cat_id', '=', 'transaksi.cat_id')
         ->join('kategori_status', 'kategori_status.status_id', '=', 'kategori.cat_status_id')
         ->where('kategori.cat_name', 'Pemasukan')
+        ->orderBy('transaksi.trx_code', 'desc')
         ->get(['kategori.cat_id', 'kategori.cat_name', 'dompet.dompet_id', 'dompet.dompet_name', 'transaksi.*']);
         return view('admin.dompet.masuk.index', compact('transaksi'));
     }
@@ -37,7 +38,7 @@ class DompetMasukController extends Controller
         $dompet = Dompet::join('dompet_status', 'dompet.dompet_status_id', '=', 'dompet_status.status_id')->where('dompet_status.status_name', 'Aktif')->get(['dompet.*']);
         $kategori = Kategori::join('kategori_status', 'kategori.cat_status_id', '=', 'kategori_status.status_id')->where('kategori_status.status_name', 'Aktif')->get(['kategori.*']);
 
-        $data = $this->get_kode();  
+        $data = $this->kode();  
         return view('admin.dompet.masuk.create', compact('dompet', 'kategori', 'data'));
     }
 
@@ -127,39 +128,31 @@ class DompetMasukController extends Controller
         return view('admin.dompet.masuk.show', compact('transaksi'));
     }
 
-    public function get_newid($auto_id, $prefix){
-        $newId = substr($auto_id, 1, 6);
-        $tambah = (int)$newId + 1;
+    public static function kode()
+    {
+    	$kode = \DB::table('transaksi')->max('trx_code');
+    	$addNol = '';
+    	$kode = str_replace("WIN", "", $kode);
+    	$kode = (int) $kode + 1;
+        $incrementKode = $kode;
 
-        if (strlen($tambah) == 1){
-            $data = $prefix."00000" .$tambah;
-        }
-        else if (strlen($tambah) == 2){
-            $data = $prefix."0000" .$tambah;
-        }
-        else if(strlen($tambah) == 3){
-            $data = $prefix."000".$tambah;   
-        }
-        else if (strlen($tambah) == 4){
-            $data = $prefix."00" .$tambah;
-        }
-        else if(strlen($tambah) == 5){
-            $data = $prefix."0" .$tambah;
-        }
-        else if(strlen($tambah) == 6){
-            $data = $prefix.$tambah;   
-        }
-        return $data;
+    	if (strlen($kode) == 1) {
+    		$addNol = "0000000";
+    	} elseif (strlen($kode) == 2) {
+    		$addNol = "000000";
+    	} elseif (strlen($kode == 3)) {
+    		$addNol = "00000";
+    	} elseif (strlen($kode == 4)) {
+    		$addNol = "0000";
+    	} elseif (strlen($kode == 5)) {
+    		$addNol = "000";
+    	} elseif (strlen($kode == 6)) {
+    		$addNol = "00";
+    	} elseif (strlen($kode == 7)) {
+    		$addNol = "0";
+    	}
+
+    	$kodeBaru = "WIN".$addNol.$incrementKode;
+    	return $kodeBaru;
     }
-
-    public function get_kode(){
-        $auto_id = "";
-        $new_id = Transaksi::find(\DB::table('transaksi')->where('cat_id', '2')->max('trx_id'));
-        if ($new_id > 0) {
-              foreach ($new_id as $key) {
-                $auto_id = $key->trx_id;              
-              }
-        }      
-        return $this->get_newid($auto_id, 'WIN');      
-     }
 }
