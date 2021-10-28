@@ -26,6 +26,7 @@ class Transaksi extends Model
         'trx_value',
         'dompet_id',
         'cat_id',
-        'trx_status_id'
+        'trx_status_id',
+        'trx_date'
     ];
 }
