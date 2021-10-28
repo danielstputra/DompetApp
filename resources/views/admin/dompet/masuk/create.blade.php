@@ -34,12 +34,12 @@
                       <div class="row g-3 mb-3">
                         <div class="col-md-2">
 							<label class="form-label" for="dompet_masuk_kode">{{ __('Kode') }}</label>
-							<input class="form-control" type="text" id="dompet_masuk_kode" name="dompet_masuk_kode" value="{{ $data }}" disabled="true" placeholder="Kode" />
+							<input class="form-control" type="text" id="dompet_masuk_kode" name="dompet_masuk_kode" value="{{ $data }}" readonly="true" placeholder="Kode" />
                         </div>
 
                         <div class="col-md-2">
 							<label class="form-label" for="dompet_masuk_tanggal">{{ __('Tanggal') }}</label>
-							<input class="form-control" type="text" id="dompet_masuk_tanggal" name="dompet_masuk_tanggal" value="{{ date('Y-m-d') }}" disabled="true" placeholder="Tanggal" />
+							<input class="form-control" type="text" id="dompet_masuk_tanggal" name="dompet_masuk_tanggal" value="{{ date('Y-m-d') }}" readonly="true" placeholder="Tanggal" />
                         </div>
 
 						<div class="col-md-3">

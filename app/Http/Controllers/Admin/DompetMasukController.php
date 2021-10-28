@@ -58,9 +58,12 @@ class DompetMasukController extends Controller
     public function store(Request $request, Transaksi $transaksi)
     {
         $validator = Validator::make($request->all(), [
-            'trx_name' => 'required|min:5',
-            'trx_deskripsi' => 'max:100',
-            'trx_status' => 'required'
+            'dompet_masuk_kode' => 'required',
+            'dompet_masuk_tanggal' => 'required',
+            'dompet_masuk_kategori' => 'required',
+            'dompet_masuk_dompet' => 'required',
+            'dompet_masuk_nilai' => 'required|numeric|min:0|not_in:0',
+            'dompet_masuk_deskripsi' => 'required|max:100'
         ]);
 
         if ($validator->fails()) {
@@ -70,16 +73,21 @@ class DompetMasukController extends Controller
             ->withInput();
         }
 
-        $transaksi_name = $request->get('trx_name');
-        $transaksi_referensi = $request->get('trx_referensi');
-        $transaksi_deskripsi = $request->get('trx_deskripsi');
-        $transaksi_status = $request->get('trx_status');
+        $dompet_masuk_kode = $request->get('dompet_masuk_kode');
+        $dompet_masuk_tanggal = $request->get('dompet_masuk_tanggal');
+        $dompet_masuk_kategori = $request->get('dompet_masuk_kategori');
+        $dompet_masuk_dompet = $request->get('dompet_masuk_dompet');
+        $dompet_masuk_nilai = $request->get('dompet_masuk_nilai');
+        $dompet_masuk_deskripsi = $request->get('dompet_masuk_deskripsi');
 
         $execute = $transaksi->create([
-            'trx_name' => trim($transaksi_name),
-            'trx_referensi' => intval($transaksi_referensi),
-            'trx_deskripsi' => trim($transaksi_deskripsi),
-            'trx_status_id' => intval($transaksi_status),
+            'trx_code' => trim($dompet_masuk_kode),
+            'created_at' => trim($dompet_masuk_tanggal),
+            'cat_id' => trim($dompet_masuk_kategori),
+            'dompet_id' => trim($dompet_masuk_dompet),
+            'trx_value' => intval($dompet_masuk_nilai),
+            'trx_description' => trim($dompet_masuk_deskripsi),
+            'trx_status_id' => intval(1),
         ]);
 
         if ($execute) {
