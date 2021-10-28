@@ -34,17 +34,35 @@
                       <div class="row g-3 mb-3">
                         <div class="col-md-6">
 							<label class="form-label" for="dompet_masuk_kode">{{ __('Kode') }}</label>
-							<input class="form-control" type="text" id="dompet_masuk_kode" name="dompet_masuk_kode" value="{{ $data }}" placeholder="Nama" />
+							<input class="form-control" type="text" id="dompet_masuk_kode" name="dompet_masuk_kode" value="{{ $data }}" disabled="true" placeholder="Kode" />
                         </div>
 
                         <div class="col-md-6">
-							<label class="form-label" for="dompet_referensi">{{ __('Referensi') }}</label>
-							<input class="form-control" type="text" id="dompet_referensi" name="dompet_referensi" value="{{ old('dompet_referensi') }}" placeholder="Referensi" />
+							<label class="form-label" for="dompet_masuk_tanggal">{{ __('Tanggal') }}</label>
+							<input class="form-control" type="text" id="dompet_masuk_tanggal" name="dompet_masuk_tanggal" value="{{ date('Y-m-d') }}" placeholder="Tanggal" />
                         </div>
 
-						<div class="col-md-12">
-							<label class="form-label" for="dompet_deskripsi">{{ __('Deskripsi') }}</label>
-							<textarea class="form-control" type="text" id="dompet_deskripsi" name="dompet_deskripsi" placeholder="Deskripsi">{{ old('dompet_deskripsi') }}</textarea>
+						<div class="col-md-4">
+							<label class="form-label" for="dompet_masuk_kategori">{{ __('Kategori') }}</label>
+							<select class="form-select" id="dompet_masuk_kategori" name="dompet_masuk_kategori">
+								@foreach($kategori as $value)
+									<option value="{{ $value->cat_id }}">{{ $value->cat_name }}</option>
+								@endforeach
+							</select>
+						</div>
+
+                        <div class="col-md-4">
+							<label class="form-label" for="dompet_masuk_dompet">{{ __('Dompet') }}</label>
+							<select class="form-select" id="dompet_masuk_dompet" name="dompet_masuk_dompet">
+								@foreach($dompet as $value)
+									<option value="{{ $value->dompet_id }}">{{ $value->dompet_name }}</option>
+								@endforeach
+							</select>
+						</div>
+
+                        <div class="col-md-4">
+							<label class="form-label" for="dompet_masuk_nilai">{{ __('Nilai') }}</label>
+							<input class="form-control" type="number" id="dompet_masuk_nilai" name="dompet_masuk_nilai" value="{{ old('0') }}" placeholder="00000000" />
                         </div>
 
                       </div>
