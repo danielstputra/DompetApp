@@ -1,6 +1,6 @@
 @extends('layouts.backend.app',[
 	'title' => 'Dompet Keluar',
-	'contentTitle' => 'Management Dompet Keluar',
+	'contentTitle' => 'Kelola Dompet Keluar',
 ])
 
 @section('content')
@@ -13,7 +13,7 @@
 			<div class="col-6">
 				<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="{{ route('admin.index') }}">{{ __('Halaman Utama') }}</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.dompet') }}">{{ __('Dompet') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.dompet.keluar.index') }}">{{ __('Dompet') }}</a></li>
 				<li class="breadcrumb-item active">{{ __('Keluar') }}</li>
 				</ol>
 			</div>
@@ -26,26 +26,13 @@
 		<div class="col-sm-12 col-xl-12">
 			<div class="card">
 				<div class="card-body btn-showcase">
-					@include('flash-message')
-                    
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="btn-group" role="group">
-                                <button class="btn btn-info dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Semua (4)</button>
-                                <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
-                                    <a class="dropdown-item" href="#">Aktif (3)</a>
-                                    <a class="dropdown-item" href="#">Tidak Aktif (1)</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-10">
-                            <a class="btn btn-square btn-info mb-4" type="button" href="#">{{ __('Buat Baru') }}</a>
-                        </div>
+                    <div class="text-end">
+                        <a class="btn btn-square btn-info mb-4" type="button" href="{{ route('admin.dompet.keluar.create') }}">{{ __('Buat Baru') }}</a>
                     </div>
-                    
+
+					@include('flash-message')
 					<div class="table-responsive">
-                        <table class="display" id="table-dompet">
+                        <table class="display" id="table-dompet-keluar">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -58,15 +45,21 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php 
+                                    $no=1;
+                                @endphp
+
+                                @foreach($transaksi as $value)
                                 <tr>
-                                    <td>1</td>
-                                    <td>2021-10-27</td>
-                                    <td>WOUT00000001</td>
-                                    <td>Bayar Kos</td>
-                                    <td>Pengeluaran</td>
-                                    <td>(-) 500.000</td>
-                                    <td>Dompet Utama</td>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $value->trx_date }}</td>
+                                    <td>{{ $value->trx_code }}</td>
+                                    <td>{{ $value->trx_description }}</td>
+                                    <td>{{ $value->cat_name }}</td>
+                                    <td>(-) {{ number_format($value->trx_value,0,'.') }}</td>
+                                    <td>{{ $value->dompet_name }}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -77,4 +70,17 @@
 	<!-- /.row -->
 </div>
 <!-- Container-fluid Ends-->
+@push('js')
+<!-- DataTables -->
+<script>
+$(function () {
+    $('#table-dompet-keluar').DataTable({
+        'language' : {
+            'url' : '/templates/backend/CyberFrostModernTheme/js/datatable/datatables/indonesia.json',
+            'sEmptyTable' : 'Tidads'
+        }
+    });
+});
+</script>
+@endpush
 @stop
