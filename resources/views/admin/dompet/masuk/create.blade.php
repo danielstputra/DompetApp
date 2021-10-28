@@ -33,8 +33,8 @@
 					@csrf
                       <div class="row g-3 mb-3">
                         <div class="col-md-6">
-							<label class="form-label" for="dompet_name">{{ __('Nama') }} <a style="color:red;">*</a></label>
-							<input class="form-control" type="text" id="dompet_name" name="dompet_name" value="{{ old('dompet_name') }}" placeholder="Nama" />
+							<label class="form-label" for="dompet_masuk_kode">{{ __('Kode') }}</label>
+							<input class="form-control" type="text" id="dompet_masuk_kode" name="dompet_masuk_kode" value="{{ old('dompet_masuk_kode') }}" placeholder="Nama" />
                         </div>
 
                         <div class="col-md-6">
