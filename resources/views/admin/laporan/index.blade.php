@@ -32,15 +32,53 @@
                     <form class="needs-validation" novalidate="" action="#" method="POST" enctype="multipart/form-data">
 					@csrf
                       <div class="row g-3 mb-3">
-                        <div class="col-md-12">
-							<label class="form-label" for="kategori_name">{{ __('Nama') }} <a style="color:red;">*</a></label>
-							<input class="datepicker-here form-control digits" type="text" data-language="en"/>
-                        </div>
+					  	<div class="col-md-8">
+							<div class="row g-3 mb-3">
+								<div class="col-md-6">
+									<label class="form-label" for="kategori_name">{{ __('Tanggal Awal') }} <a style="color:red;">*</a></label>
+									<input class="datepicker-here form-control digits" type="text" data-language="en"/>
+								</div>
+
+								<div class="col-md-6">
+									<label class="form-label" for="kategori_name">{{ __('Tanggal Akhir') }} <a style="color:red;">*</a></label>
+									<input class="datepicker-here form-control digits" type="text" data-language="en"/>
+								</div>
+
+								<div class="col-md-6">
+									<label class="form-label" for="kategori_status">{{ __('Kategori') }}</label>
+									<select class="form-select" id="kategori_status" name="kategori_status">
+										<option value="1">Test 1</option>
+									</select>
+								</div>
+
+								<div class="col-md-6">
+									<label class="form-label" for="kategori_status">{{ __('Dompet') }}</label>
+									<select class="form-select" id="kategori_status" name="kategori_status">
+										<option value="1">Test 1</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="media">
+								<div class="media-body">
+									<span class="d-block">Status</span>
+									<span class="d-block">
+										<i class="fa fa-check"></i> Tampilakn Uang Masuk
+									</span>
+									<span class="d-block">
+										<i class="fa fa-check"></i> Tampilakn Uang Keluar
+									</span>
+								</div>
+							</div>
+						</div>
                       </div>
 
 					  <div class="mt-4 mb-3" style="border-bottom: 1px solid #ecf3fa"></div>
 
-                      <button class="btn btn-primary pull-right" type="submit">{{ __('Submit') }}</button>
+                      <button class="btn btn-primary pull-left" type="submit">{{ __('Buat Laporan') }}</button>
+                      <button class="btn btn-primary pull-left" type="submit">{{ __('Buat ke Excel') }}</button>
                     </form>
 				</div>
 			</div>
