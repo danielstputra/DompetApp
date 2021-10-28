@@ -81,7 +81,7 @@ class DompetMasukController extends Controller
 
         $execute = $transaksi->create([
             'trx_code' => trim($dompet_masuk_kode),
-            'created_at' => trim($dompet_masuk_tanggal),
+            'trx_date' => trim($dompet_masuk_tanggal),
             'cat_id' => trim($dompet_masuk_kategori),
             'dompet_id' => trim($dompet_masuk_dompet),
             'trx_value' => intval($dompet_masuk_nilai),
