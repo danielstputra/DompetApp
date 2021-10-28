@@ -36,7 +36,7 @@ class DompetMasukController extends Controller
     public function create(Transaksi $transaksi)
     {
         $dompet = Dompet::join('dompet_status', 'dompet.dompet_status_id', '=', 'dompet_status.status_id')->where('dompet_status.status_name', 'Aktif')->get(['dompet.*']);
-        $kategori = Kategori::join('kategori_status', 'kategori.cat_status_id', '=', 'kategori_status.status_id')->where('kategori_status.status_name', 'Aktif')->where('kategori.cat_name', 'Pemasukan')->get(['kategori.*']);
+        $kategori = Kategori::join('kategori_status', 'kategori.cat_status_id', '=', 'kategori_status.status_id')->where('kategori_status.status_name', 'Aktif')->where('kategori.cat_name', '!=', 'Pengeluaran')->get(['kategori.*']);
 
         $data = $this->kode();  
         return view('admin.dompet.masuk.create', compact('dompet', 'kategori', 'data'));
