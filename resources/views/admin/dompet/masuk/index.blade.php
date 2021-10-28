@@ -52,7 +52,7 @@
                                 @foreach($transaksi as $value)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $value->created_at }}</td>
+                                    <td>{{ $value->trx_date }}</td>
                                     <td>{{ $value->trx_code }}</td>
                                     <td>{{ $value->trx_description }}</td>
                                     <td>{{ $value->cat_name }}</td>
