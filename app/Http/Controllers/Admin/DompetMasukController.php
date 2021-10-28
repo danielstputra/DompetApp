@@ -19,7 +19,13 @@ class DompetMasukController extends Controller
 
     public function index()
     {
-        $transaksi = Transaksi::all();
+        $transaksi = Transaksi::join('dompet', 'dompet.dompet_id', '=', 'transaksi.dompet_id')
+        ->join('dompet_status', 'dompet_status.status_id', '=', 'dompet.dompet_status_id')
+        ->join('kategori', 'kategori.cat_id', '=', 'transaksi.cat_id')
+        ->join('kategori_status', 'kategori_status.status_id', '=', 'kategori.cat_status_id')
+        ->join('transaksi_status', 'transaksi_status.status_id', '=', 'transaksi.trx_status_id')
+
+        ->get(['dompet.*', 'dompet_status.*', 'kategori.*', 'kategori_status.*', 'transaksi.*', 'transaksi_status.*']);
         return view('admin.dompet.masuk.index', compact('transaksi'));
     }
 
