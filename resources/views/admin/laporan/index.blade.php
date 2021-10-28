@@ -36,12 +36,12 @@
 							<div class="row g-3 mb-3">
 								<div class="col-md-6">
 									<label class="form-label" for="kategori_name">{{ __('Tanggal Awal') }} <a style="color:red;">*</a></label>
-									<input class="datepicker-here form-control digits" type="text" data-language="en"/>
+									<input class="start-date form-control digits" type="text" data-language="en"/>
 								</div>
 
 								<div class="col-md-6">
 									<label class="form-label" for="kategori_name">{{ __('Tanggal Akhir') }} <a style="color:red;">*</a></label>
-									<input class="datepicker-here form-control digits" type="text" data-language="en"/>
+									<input class="end-date form-control digits" type="text" data-language="en"/>
 								</div>
 
 								<div class="col-md-6">
@@ -91,4 +91,18 @@
 	<!-- /.row -->
 </div>
 <!-- Container-fluid Ends-->
+@push('js')
+<!-- DataTables -->
+<script>
+$(function () {
+	$(".start-date").datepicker({ 
+        dateFormat: 'yyyy-mm-dd'
+    });
+
+	$(".end-date").datepicker({ 
+        dateFormat: 'yyyy-mm-dd'
+    });
+});
+</script>
+@endpush
 @stop
