@@ -52,12 +52,12 @@
                                 @foreach($transaksi as $value)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $no++ }}a</td>
+                                    <td>{{ $value->created_at }}</td>
+                                    <td>{{ $value->trx_code }}</td>
+                                    <td>{{ $value->trx_description }}</td>
+                                    <td>{{ $value->cat_name }}</td>
+                                    <td>(-) {{ number_format($value->trx_value,0,'.') }}</td>
+                                    <td>{{ $value->dompet_name }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
