@@ -112,4 +112,15 @@ class DompetMasukController extends Controller
     {
         return view('admin.dompet.masuk.show', compact('transaksi'));
     }
+
+    public function get_kode(){
+        $transaksi = new Transaksi();
+        $new_id = $transaksi->get_idmax()->result();
+        if ($new_id > 0) {
+              foreach ($new_id as $key) {
+                $auto_id = $key->id_mobil;              
+              }
+        }      
+        return $id_mobil = $transaksi->get_newid($auto_id);      
+     }
 }
