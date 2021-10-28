@@ -47,14 +47,18 @@
 								<div class="col-md-6">
 									<label class="form-label" for="kategori_status">{{ __('Kategori') }}</label>
 									<select class="form-select" id="kategori_status" name="kategori_status">
-										<option value="1">Test 1</option>
+										@foreach($kategori as $value)
+											<option value="{{ $value->cat_id }}">{{ $value->cat_name }}</option>
+										@endforeach
 									</select>
 								</div>
 
 								<div class="col-md-6">
 									<label class="form-label" for="kategori_status">{{ __('Dompet') }}</label>
 									<select class="form-select" id="kategori_status" name="kategori_status">
-										<option value="1">Test 1</option>
+										@foreach($dompet as $value)
+											<option value="{{ $value->dompet_id }}">{{ $value->dompet_name }}</option>
+										@endforeach
 									</select>
 								</div>
 							</div>
