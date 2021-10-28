@@ -113,14 +113,38 @@ class DompetMasukController extends Controller
         return view('admin.dompet.masuk.show', compact('transaksi'));
     }
 
+    public function get_newid($auto_id){
+        $newId = substr($auto_id, 1,4);
+        $tambah = (int)$newId + 1;
+
+        if (strlen($tambah) == 1){
+            $id_mobil = "00000" .$tambah;
+        }
+        else if (strlen($tambah) == 2){
+            $id_mobil = "0000" .$tambah;
+        }
+        else if(strlen($tambah) == 3){
+            $id_mobil = "000".$tambah;   
+        }
+        else if (strlen($tambah) == 4){
+            $id_mobil = "00" .$tambah;
+        }
+        else if(strlen($tambah) == 5){
+            $id_mobil = "0" .$tambah;
+        }
+        else if(strlen($tambah) == 6){
+            $id_mobil = $tambah;   
+        }
+        return $id_mobil;
+    }
+
     public function get_kode(){
-        $transaksi = new Transaksi();
-        $new_id = $transaksi->get_idmax()->result();
+        $new_id = Transaksi::find(\DB::table('transaksi')->max('trx_id'));
         if ($new_id > 0) {
               foreach ($new_id as $key) {
                 $auto_id = $key->id_mobil;              
               }
         }      
-        return $id_mobil = $transaksi->get_newid($auto_id);      
+        return $id_mobil = $this->get_newid($auto_id);      
      }
 }
