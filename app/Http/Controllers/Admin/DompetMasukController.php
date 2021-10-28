@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use DataTables;
 use App\Models\Transaksi;
 use App\Models\TransaksiStatus;
+use App\Models\Kategori;
+use App\Models\KategoriStatus;
 
 class DompetMasukController extends Controller
 {
@@ -31,9 +33,21 @@ class DompetMasukController extends Controller
 
     public function create(Transaksi $transaksi)
     {
-        $status = TransaksiStatus::all();
+        $transaksi = Transaksi::join('transaksi_status', 'transaksi_status.status_id', '=', 'transaksi.trx_status_id')
+        ->join('dompet', 'dompet.dompet_id', '=', 'transaksi.dompet_id')
+        ->join('dompet_status', 'dompet_status.status_id', '=', 'dompet.dompet_status_id')
+
+        ->join('kategori', 'kategori.cat_id', '=', 'transaksi.cat_id')
+        ->join('kategori_status', 'kategori_status.status_id', '=', 'kategori.cat_status_id')
+
+        ->where('dompet_status.status_name', 'Aktif')
+        ->where('transaksi_status.status_name', 'Aktif')
+        ->where('kategori_status.status_name', 'Aktif')
+
+        ->get(['kategori.cat_id', 'kategori.cat_name', 'dompet.dompet_id', 'dompet.dompet_name']);
+
         $data = $this->get_kode();  
-        return view('admin.dompet.masuk.create', compact('transaksi', 'status', 'data'));
+        return view('admin.dompet.masuk.create', compact('transaksi', 'data'));
     }
 
     public function store(Request $request, Transaksi $transaksi)
