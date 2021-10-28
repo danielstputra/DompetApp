@@ -154,12 +154,12 @@ class DompetKeluarController extends Controller
 
     public function get_kode(){
         $auto_id = "";
-        $new_id = Transaksi::find(\DB::table('transaksi')->max('trx_id'));
+        $new_id = Transaksi::find(\DB::table('transaksi')->where('cat_id', '1')->max('trx_id'));
         if ($new_id > 0) {
               foreach ($new_id as $key) {
                 $auto_id = $key->trx_id;              
               }
         }      
-        return $this->get_newid($auto_id, 'WIN');      
+        return $this->get_newid($auto_id, 'WOUT');      
     }
 }
