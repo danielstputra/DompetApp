@@ -34,19 +34,6 @@ class DompetMasukController extends Controller
 
     public function create(Transaksi $transaksi)
     {
-        // $transaksi = Transaksi::join('transaksi_status', 'transaksi_status.status_id', '=', 'transaksi.trx_status_id')
-        // ->join('dompet', 'dompet.dompet_id', '=', 'transaksi.dompet_id')
-        // ->join('dompet_status', 'dompet_status.status_id', '=', 'dompet.dompet_status_id')
-
-        // ->join('kategori', 'kategori.cat_id', '=', 'transaksi.cat_id')
-        // ->join('kategori_status', 'kategori_status.status_id', '=', 'kategori.cat_status_id')
-
-        // ->where('dompet_status.status_name', 'Aktif')
-        // ->where('transaksi_status.status_name', 'Aktif')
-        // ->where('kategori_status.status_name', 'Aktif')
-
-        // ->get(['kategori.cat_id', 'kategori.cat_name', 'dompet.dompet_id', 'dompet.dompet_name']);
-
         $dompet = Dompet::join('dompet_status', 'dompet.dompet_status_id', '=', 'dompet_status.status_id')->where('dompet_status.status_name', 'Aktif')->get(['dompet.*']);
         $kategori = Kategori::join('kategori_status', 'kategori.cat_status_id', '=', 'kategori_status.status_id')->where('kategori_status.status_name', 'Aktif')->get(['kategori.*']);
 
