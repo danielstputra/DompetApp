@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Admin','prefix' => 'admin','middleware' => ['auth'
 	Route::name('admin.')->group(function(){
 		Route::get('/', [AdminController::class,'index'])->name('index');
 		Route::get('/dashboard', [AdminController::class,'index'])->name('dashboard');
+		Route::get('/laporan-transaksi', [LaporanTransaksiController::class, 'index'])->name('laporan');
 		
 		Route::resource('dompet', 'DompetController', ['names' => 'dompet']);
 		Route::resource('kategori', 'KategoriController', ['names' => 'kategori']);
