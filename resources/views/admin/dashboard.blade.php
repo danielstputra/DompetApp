@@ -42,15 +42,21 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td>2021-10-27</td>
-									<td>WOUT00000001</td>
-									<td>Bayar Kos</td>
-									<td>Pengeluaran</td>
-									<td>(-) 500.000</td>
-									<td>Dompet Utama</td>
-								</tr>
+								@php 
+                                    $no=1;
+                                @endphp
+
+                                @foreach($transaksi_masuk as $value)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $value->trx_date }}</td>
+                                    <td>{{ $value->trx_code }}</td>
+                                    <td>{{ $value->trx_description }}</td>
+                                    <td>{{ $value->cat_name }}</td>
+                                    <td>(-) {{ number_format($value->trx_value,0,'.') }}</td>
+                                    <td>{{ $value->dompet_name }}</td>
+                                </tr>
+                                @endforeach
 							</tbody>
 						</table>
 					</div>
@@ -78,15 +84,21 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td>2021-10-27</td>
-									<td>WOUT00000001</td>
-									<td>Bayar Kos</td>
-									<td>Pengeluaran</td>
-									<td>(-) 500.000</td>
-									<td>Dompet Utama</td>
-								</tr>
+								@php 
+                                    $no=1;
+                                @endphp
+
+                                @foreach($transaksi_keluar as $value)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $value->trx_date }}</td>
+                                    <td>{{ $value->trx_code }}</td>
+                                    <td>{{ $value->trx_description }}</td>
+                                    <td>{{ $value->cat_name }}</td>
+                                    <td>(-) {{ number_format($value->trx_value,0,'.') }}</td>
+                                    <td>{{ $value->dompet_name }}</td>
+                                </tr>
+                                @endforeach
 							</tbody>
 						</table>
 					</div>
@@ -96,4 +108,24 @@
 	</div>
 </div>
 <!-- Container-fluid Ends-->
+@push('js')
+<!-- DataTables -->
+<script>
+$(function () {
+    $('#table-dompet-masuk').DataTable({
+        'language' : {
+            'url' : '/templates/backend/CyberFrostModernTheme/js/datatable/datatables/indonesia.json',
+            'sEmptyTable' : 'Tidads'
+        }
+    });
+
+	$('#table-dompet-keluar').DataTable({
+        'language' : {
+            'url' : '/templates/backend/CyberFrostModernTheme/js/datatable/datatables/indonesia.json',
+            'sEmptyTable' : 'Tidads'
+        }
+    });
+});
+</script>
+@endpush
 @stop
