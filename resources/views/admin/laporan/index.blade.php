@@ -27,7 +27,21 @@
 		<div class="col-sm-12 col-xl-12">
 			<div class="card">
 				<div class="card-body btn-showcase">
+				@include('flash-message')
                     
+                    <form class="needs-validation" novalidate="" action="#" method="POST" enctype="multipart/form-data">
+					@csrf
+                      <div class="row g-3 mb-3">
+                        <div class="col-md-12">
+							<label class="form-label" for="kategori_name">{{ __('Nama') }} <a style="color:red;">*</a></label>
+							<input class="datepicker-here form-control digits" type="text" data-language="en"/>
+                        </div>
+                      </div>
+
+					  <div class="mt-4 mb-3" style="border-bottom: 1px solid #ecf3fa"></div>
+
+                      <button class="btn btn-primary pull-right" type="submit">{{ __('Submit') }}</button>
+                    </form>
 				</div>
 			</div>
 		</div>
