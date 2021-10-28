@@ -27,6 +27,7 @@ class DompetKeluarController extends Controller
         ->join('dompet_status', 'dompet_status.status_id', '=', 'dompet.dompet_status_id')
         ->join('kategori', 'kategori.cat_id', '=', 'transaksi.cat_id')
         ->join('kategori_status', 'kategori_status.status_id', '=', 'kategori.cat_status_id')
+        ->where('kategori.cat_name', 'Pengeluaran')
         ->get(['kategori.cat_id', 'kategori.cat_name', 'dompet.dompet_id', 'dompet.dompet_name', 'transaksi.*']);
         return view('admin.dompet.keluar.index', compact('transaksi'));
     }
