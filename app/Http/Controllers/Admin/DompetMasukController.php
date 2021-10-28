@@ -32,7 +32,7 @@ class DompetMasukController extends Controller
     public function create(Transaksi $transaksi)
     {
         $status = TransaksiStatus::all();
-        $data['new_id'] = $this->get_kode();  
+        $data = $this->get_kode();  
         return view('admin.dompet.masuk.create', compact('transaksi', 'status', 'data'));
     }
 
@@ -114,38 +114,39 @@ class DompetMasukController extends Controller
         return view('admin.dompet.masuk.show', compact('transaksi'));
     }
 
-    public function get_newid($auto_id){
-        $newId = substr($auto_id, 1,4);
+    public function get_newid($auto_id, $prefix){
+        $newId = substr($auto_id, 1, 6);
         $tambah = (int)$newId + 1;
 
         if (strlen($tambah) == 1){
-            $id_mobil = "00000" .$tambah;
+            $data = $prefix."00000" .$tambah;
         }
         else if (strlen($tambah) == 2){
-            $id_mobil = "0000" .$tambah;
+            $data = $prefix."0000" .$tambah;
         }
         else if(strlen($tambah) == 3){
-            $id_mobil = "000".$tambah;   
+            $data = $prefix."000".$tambah;   
         }
         else if (strlen($tambah) == 4){
-            $id_mobil = "00" .$tambah;
+            $data = $prefix."00" .$tambah;
         }
         else if(strlen($tambah) == 5){
-            $id_mobil = "0" .$tambah;
+            $data = $prefix."0" .$tambah;
         }
         else if(strlen($tambah) == 6){
-            $id_mobil = $tambah;   
+            $data = $prefix.$tambah;   
         }
-        return $id_mobil;
+        return $data;
     }
 
     public function get_kode(){
+        $auto_id = "";
         $new_id = Transaksi::find(\DB::table('transaksi')->max('trx_id'));
         if ($new_id > 0) {
               foreach ($new_id as $key) {
-                $auto_id = $key->id_mobil;              
+                $auto_id = $key->trx_id;              
               }
         }      
-        return $id_mobil = $this->get_newid($auto_id);      
+        return $this->get_newid($auto_id, 'WIN');      
      }
 }

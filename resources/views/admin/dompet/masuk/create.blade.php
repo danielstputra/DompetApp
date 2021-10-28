@@ -34,7 +34,7 @@
                       <div class="row g-3 mb-3">
                         <div class="col-md-6">
 							<label class="form-label" for="dompet_masuk_kode">{{ __('Kode') }}</label>
-							<input class="form-control" type="text" id="dompet_masuk_kode" name="dompet_masuk_kode" value="{{ $data->new_id }}" placeholder="Nama" />
+							<input class="form-control" type="text" id="dompet_masuk_kode" name="dompet_masuk_kode" value="{{ $data }}" placeholder="Nama" />
                         </div>
 
                         <div class="col-md-6">
