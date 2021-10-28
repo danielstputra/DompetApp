@@ -30,7 +30,7 @@
 
                   <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="printer"></i><span>Laporan</span></a>
                     <ul class="sidebar-submenu">
-                      <li><a href="{{ route('admin.laporan.index') }}">Laporan Transaksi</a></li>
+                      <li><a href="{{ route('admin.laporan') }}">Laporan Transaksi</a></li>
                     </ul>
                   </li>
                   @endif
